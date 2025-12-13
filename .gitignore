@@ -1,0 +1,21 @@
+# 通用
+.vscode/
+node_modules/
+dist/
+*.log
+
+# 前端（Vite / Vue）
+bdis-web/node_modules/
+bdis-web/dist/
+
+# Java / Spring Boot
+backend/target/
+backend/*.log
+backend/*.class
+backend/*.jar
+backend/*.war
+
+# Python / Flask
+backend/__pycache__/
+backend/*.pyc/
+backend/venv/
