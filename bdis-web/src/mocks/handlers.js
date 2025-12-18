@@ -123,80 +123,62 @@ export const handlers = [
     });
   }),
 
+  // 4. 项目进展接口（科研/项目进展模块）
+  http.get('/api/projects/progress', ({ request }) => {
+    const url = new URL(request.url)
+    const limit = Number(url.searchParams.get('limit') || 5)
+    const status = url.searchParams.get('status') // recruiting / ongoing / paused / done
 
-  // 4. 四宫格入口接口
-  http.get('/api/home/features', () => {
+    const all = [
+      {
+        id: "p-001",
+        name: "系统开发：BDIS 官网.V1",
+        tagline: "BDIS官网开发，围绕实验室品牌展示与招新传播，完成V1版本的初期开发与联调上线",
+        status: "ongoing",
+        progress: 82,
+        recruitRoles: ["运维"],
+        members: ["丁祎", "郭敦权", "杨思琦", "朱玉洁", "李林芝"],
+        updatedAt: "2025-11-15",
+        coverUrl: "/static/news/news1.jpg",
+        link: "/projects/p-001",
+        order: 1
+      },
+      {
+        id: "p-002",
+        name: "科研申报：心理健康预警分析",
+        tagline: "融合多源校园行为数据构建特征体系，完成预警模型基线训练与可复现实验流程，支撑系统原型迭代",
+        status: "ongoing",
+        progress: 10,
+        recruitRoles: ["无"],
+        members: ["丁祎", "杨思琦", "朱玉洁", "李林芝"],
+        updatedAt: "2026-11-01",
+        coverUrl: "/static/news/news2.jpg",
+        link: "/projects/p-002",
+        order: 2
+      },
+      {
+        id: "p-003",
+        name: "企业合作：数据标注与质检",
+        tagline: "建立小批量数据标注与抽检质控流程，沉淀统一规范与交付节奏，为后续规模化合作提供可复制范式",
+        status: "recruiting",
+        progress: 15,
+        recruitRoles: ["数据标注", "质检", "项目助理"],
+        members: ["招募中"],
+        updatedAt: "2025-10-28",
+        coverUrl: "/static/news/news3.jpg",
+        link: "/news/5",
+        order: 3
+      },
+    ]
+
+    const filtered = status ? all.filter(p => p.status === status) : all
+    const sorted = filtered.sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+
     return HttpResponse.json({
       code: 0,
       message: "ok",
-      data: [
-        { id: 1, title: "加入我们", type: "join", link: "/join", order: 1 },
-        { id: 2, title: "项目成果", type: "projects", link: "/projects", order: 2 },
-        { id: 3, title: "创新竞赛", type: "events", link: "/activities", order: 3 },
-        { id: 4, title: "学习资料", type: "resources", link: "/resources", order: 4 }
-      ]
-    });
+      data: sorted.slice(0, limit)
+    })
   }),
 
-  // 5. 项目进展接口
-  http.get('/api/projects/highlight', (req) => {
-    const limit = req.url.searchParams.get('limit') || 3;
-    return HttpResponse.json({
-      code: 0,
-      message: "ok",
-      data: [
-        {
-          id: 1,
-          name: "党建矩阵·力量聚变",
-          type: "system",
-          year: 2025,
-          tags: ["数据挖掘", "可视化", "后端开发"],
-          brief: "基于SpringBoot+Vue开发的党建数据管理平台...",
-          coverUrl: "@/assets/projects/project1.png",
-          link: "/projects/1",
-          isRecruiting: false,
-          recruitRoles: [],
-          recruitNote: "",
-          order: 1
-        },
-        {
-          id: 2,
-          name: "校园智慧导航系统",
-          type: "Cooperation",
-          year: 2026,
-          tags: ["前端开发", "GIS", "移动端适配"],
-          brief: "与某科技公司合作开发...",
-          coverUrl: "@/assets/projects/project2.png",
-          link: "/projects/2",
-          isRecruiting: true,
-          recruitRoles: ["前端", "UI设计"],
-          recruitNote: "需要前端2人、UI设计1人...",
-          order: 2
-        },
-        {
-          id: 3,
-          name: "智能垃圾分类识别系统",
-          type: "contest",
-          year: 2025,
-          tags: ["机器学习", "图像识别", "Python"],
-          brief: "基于CNN模型开发的垃圾分类识别工具...",
-          coverUrl: "@/assets/projects/project3.png",
-          link: "/projects/3",
-          isRecruiting: true,
-          recruitRoles: ["算法优化", "后端部署"],
-          recruitNote: "需要1名算法工程师优化模型...",
-          order: 3
-        }
-      ].slice(0, limit)
-    });
-  }),
-
-  // 6. 工作室生活接口
-  http.get('/api/life', () => {
-    return HttpResponse.json({
-      code: 0,
-      message: "ok",
-      data: []
-    });
-  })
 ];

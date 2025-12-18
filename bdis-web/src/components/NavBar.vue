@@ -40,26 +40,31 @@
 import { ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import logoImg from '../assets/logo.jpg'
+import router from '../router'
 
-// 右侧菜单当前高亮
 const activeMain = ref('home')
 
 // 右侧菜单配置
 const mainMenus = [
-  { index: 'home', label: '首页' },
-  { index: 'about', label: '关于我们' },
-  { index: 'research', label: '项目进展' },
-  { index: 'platform', label: '动态公告' },
-  { index: 'news', label: '创新竞赛' },
-  { index: 'education', label: '学习资料' },
-  { index: 'join', label: '加入我们' },
+  { index: 'home', label: '首页', path: "/" },
+  { index: 'about', label: '关于我们', path: "/info/about" },
+  { index: 'research', label: '项目进展', path: "/info/research" },
+  { index: 'platform', label: '创新竞赛', path: "/info/platform" },
+  { index: 'news', label: '动态公告', path: "/info/news" },
+  { index: 'education', label: '学习资料', path: "/info/education" },
+  { index: 'join', label: '加入我们', path: "/info/join" },
 ]
 
 // 菜单点击
 const handleMainSelect = (key) => {
   activeMain.value = key
   console.log('主菜单点击：', key)
-  // 以后这里接路由：router.push({ name: key })
+  const target = mainMenus.find(item => {
+    return item.index === key
+  })
+  if (target) {
+    router.push(target.path)
+  }
 }
 </script>
 

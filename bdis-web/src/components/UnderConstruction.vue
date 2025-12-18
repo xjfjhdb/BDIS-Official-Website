@@ -25,13 +25,12 @@
 </template>
 
 <script setup>
-// 完全静态，不需要任何脚本逻辑
+
 </script>
 
 <style scoped>
 .uc-page {
   min-height: calc(100vh - 135px);
-  /* 导航高度如果不是 135 自己改 */
   display: flex;
   align-items: center;
   justify-content: center;
