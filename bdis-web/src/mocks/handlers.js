@@ -12,8 +12,8 @@ export const handlers = [
         nameEn: "Big Data Intelligence Studio · BDIS",
         introShort: "依托大数据管理与应用专业，由泰迪·重理工大数据智能工作室与重庆理工大学创新实验室联合组建，聚焦创新创业、系统开发与大模型训练。",
         address: "重庆理工大学 博园4号楼305",
-        email: "studio@example.com",
-        qqGroup: "888888888",
+        email: "18862028557@163.com",
+        qqGroup: "935982021",
         logoUrl: "/static/logo/bdis-logo.png",
         picture: "@/assets/lab-main.png"
       }
@@ -302,7 +302,7 @@ export const handlers = [
   }),
 
   // 6. 实验室团队成员接口
-    http.get('/api/lab/team', () => {
+  http.get('/api/lab/team', () => {
     return HttpResponse.json({
       code: 0,
       message: "ok",
@@ -311,35 +311,35 @@ export const handlers = [
           id: 1,
           name: "丁祎",
           role: "核心成员",
-          description: "介绍",
+          description: "前端，深度学习",
           avatarUrl: ""
         },
         {
           id: 2,
           name: "郭墩权",
           role: "核心成员",
-          description: "介绍",
+          description: "前端",
           avatarUrl: ""
         },
         {
           id: 3,
           name: "杨思琦",
           role: "核心成员",
-          description: "介绍",
+          description: "后端",
           avatarUrl: ""
         },
         {
           id: 4,
           name: "朱玉洁",
           role: "核心成员",
-          description: "介绍",
+          description: "后端",
           avatarUrl: ""
         },
         {
           id: 5,
           name: "李林芝",
           role: "核心成员",
-          description: "介绍",
+          description: "后端",
           avatarUrl: ""
         }
       ]

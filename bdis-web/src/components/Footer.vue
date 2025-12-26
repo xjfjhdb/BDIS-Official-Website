@@ -39,7 +39,7 @@
             <el-icon class="contact-icon">
               <Message />
             </el-icon>
-            <span class="contact-text">3303401676@qq.com</span>
+            <span class="contact-text">18862028557@163.com</span>
           </div>
           <div class="contact-item">
             <el-icon class="contact-icon">
