@@ -20,9 +20,9 @@ public class BannerController {
     @GetMapping
     public Result<List<BannerItem>> getBannerList() {
         QueryWrapper<BannerItem> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("is_show", 1);
-        queryWrapper.orderByAsc("sort");
+        queryWrapper.eq("active", 1);
+        queryWrapper.orderByAsc("`order`");
         List<BannerItem> bannerList = bannerItemService.list(queryWrapper);
         return Result.success(bannerList);
     }
-} // 确保类的大括号完整闭合
+}

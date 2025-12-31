@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * 新闻/动态接口控制器
- * 手动指定查询字段，解决字段笔误和关键字转义问题
- */
 @RestController
 @RequestMapping("/api/news")
 public class NewsController {
@@ -26,19 +22,17 @@ public class NewsController {
 
     /**
      * 获取新闻列表接口
-     * @param limit 可选参数：限制返回条数
-     * @param category 可选参数：类别过滤（notice/recruit等）
-     * @return 统一返回结果
+     * 
+     * @param limit
+     * @param category
+     * @return
      */
     @GetMapping
     public Result<List<NewsItem>> getNewsList(
             @RequestParam(required = false, defaultValue = "0") Integer limit,
-            @RequestParam(required = false) String category
-    ) {
-        // 构建查询条件
+            @RequestParam(required = false) String category) {
         com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<NewsItem> queryWrapper = new com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<>();
 
-        // 1. 手动指定查询字段，对order关键字加反引号转义，彻底杜绝1d笔误
         queryWrapper.select(
                 "id",
                 "title",
@@ -47,19 +41,15 @@ public class NewsController {
                 "publish_date",
                 "link",
                 "cover_thumb_url",
-                "`order`"
-        );
+                "`order`");
 
-        // 2. 按order升序排序，关键字加反引号
         queryWrapper.orderByAsc("`order`");
 
-        // 3. 类别过滤条件
         if (category != null && !category.isEmpty()) {
             queryWrapper.eq("category", category);
         }
 
         List<NewsItem> newsList;
-        // 4. 分页查询（避免直接拼接LIMIT，防止SQL注入）
         if (limit > 0) {
             Page<NewsItem> page = new Page<>(1, limit);
             IPage<NewsItem> newsPage = newsItemService.page(page, queryWrapper);
@@ -68,7 +58,6 @@ public class NewsController {
             newsList = newsItemService.list(queryWrapper);
         }
 
-        // 返回成功结果
         return Result.success(newsList);
     }
 }

@@ -6,15 +6,15 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
-@TableName("news_item") // 严格对应数据库表名
+@TableName("news_info") // 必须加，指定表名
 public class NewsItem {
-    @TableId(type = IdType.AUTO)
-    private Long id; // 重点：是id不是1d，字段名无任何笔误
+    @TableId(type = IdType.INPUT)
+    private Long id;
     private String title;
     private String category;
     private String summary;
-    private String publishDate;
+    private String publishDate; // 对应数据库 publish_date
     private String link;
-    private String coverThumbUrl;
-    private Integer order;
+    private String coverThumbUrl; // 对应数据库 cover_thumb_url
+    private Integer order; // 对应数据库 `order`
 }
