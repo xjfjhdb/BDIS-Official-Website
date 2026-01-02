@@ -12,8 +12,8 @@ export const handlers = [
         nameEn: "Big Data Intelligence Studio · BDIS",
         introShort: "依托大数据管理与应用专业，由泰迪·重理工大数据智能工作室与重庆理工大学创新实验室联合组建，聚焦创新创业、系统开发与大模型训练。",
         address: "重庆理工大学 博园4号楼305",
-        email: "studio@example.com",
-        qqGroup: "888888888",
+        email: "18862028557@163.com",
+        qqGroup: "935982021",
         logoUrl: "/static/logo/bdis-logo.png",
         picture: "@/assets/lab-main.png"
       }
@@ -300,5 +300,402 @@ export const handlers = [
       data: sorted.slice(0, limit)
     })
   }),
+<<<<<<< HEAD
+=======
 
+  // 6. 实验室团队成员接口
+  http.get('/api/lab/team', () => {
+    return HttpResponse.json({
+      code: 0,
+      message: "ok",
+      data: [
+        {
+          id: 1,
+          name: "丁祎",
+          role: "核心成员",
+          description: "前端，深度学习",
+          avatarUrl: ""
+        },
+        {
+          id: 2,
+          name: "郭墩权",
+          role: "核心成员",
+          description: "前端",
+          avatarUrl: ""
+        },
+        {
+          id: 3,
+          name: "杨思琦",
+          role: "核心成员",
+          description: "后端",
+          avatarUrl: ""
+        },
+        {
+          id: 4,
+          name: "朱玉洁",
+          role: "核心成员",
+          description: "后端",
+          avatarUrl: ""
+        },
+        {
+          id: 5,
+          name: "李林芝",
+          role: "核心成员",
+          description: "后端",
+          avatarUrl: ""
+        }
+      ]
+    });
+  }),
+  // 7. 学习资料接口
+   http.get('/api/resources', ({ request }) => {
+    const url = new URL(request.url)
+    const page = Number(url.searchParams.get('page') || 1)
+    const limit = Number(url.searchParams.get('limit') || 12)
+    const category = url.searchParams.get('category') || 'all'
+    const keyword = (url.searchParams.get('keyword') || '').trim().toLowerCase()
+>>>>>>> 7d2f57075ab3292b6b4c50354754e187373961a7
+
+    const allResources = [
+      {
+        id: 1,
+        title: 'Vue 3 官方文档中文版',
+        description: 'Vue 3 框架的完整中文文档，包含基础语法、组件、路由、状态管理等内容',
+        category: 'frontend',
+        link: 'https://cn.vuejs.org'
+      },
+      {
+        id: 2,
+        title: 'React 18 新特性详解',
+        description: '深入解析 React 18 的新特性，包括并发渲染、Suspense 等核心概念',
+        category: 'frontend',
+        link: 'https://react.dev'
+      },
+      {
+        id: 3,
+        title: 'Spring Boot 实战教程',
+        description: '从零开始学习 Spring Boot，包含项目搭建、配置、数据库集成等实战内容',
+        category: 'backend',
+        link: 'https://www.bilibili.com/video/BV1Lq4y1J77x/?spm_id_from=333.337.search-card.all.click'
+      },
+      {
+        id: 4,
+        title: 'MySQL 数据库从入门到精通',
+        description: 'SQL基础、事务、索引、SQL优化、锁、InnoDB存储引擎、日志、主从复制、分库分表、读写分离',
+        category: 'database',
+        link: 'https://www.bilibili.com/video/BV1Kr4y1i7ru/'
+      },
+      {
+        id: 5,
+        title: 'Python 机器学习入门视频',
+        description: '使用 Python 进行机器学习入门，包含数据处理、模型训练、评估等',
+        category: 'ai',
+        link: 'https://www.bilibili.com/video/BV17W42197Nm/?spm_id_from=333.337.search-card.all.click'
+      },
+      {
+        id: 6,
+        title: 'Git 入门教程',
+        description: 'Git 入门教程',
+        category: 'tools',
+        link: 'https://www.runoob.com/git/git-tutorial.html'
+      },
+      {
+        id: 7,
+        title: 'TypeScript 进阶指南',
+        description: 'TypeScript 高级类型、泛型、装饰器等进阶知识',
+        category: 'frontend',
+        link: 'https://www.typescriptlang.org'
+      },
+      {
+        id: 8,
+        title: 'Node.js 后端开发实战',
+        description: '使用 Node.js 开发 RESTful API，包含 Express、中间件、认证等内容',
+        category: 'backend',
+        link: 'https://www.bilibili.com/video/BV1a34y167AZ/?spm_id_from=333.337.search-card.all.click'
+      },
+      {
+        id: 9,
+        title: 'MongoDB 快速入门',
+        description: 'NoSQL 数据库 MongoDB 的基础操作、数据建模和查询优化',
+        category: 'database',
+        link: 'https://www.bilibili.com/video/BV1bJ411x7mq/?spm_id_from=333.337.search-card.all.click'
+      },
+
+      {
+        id: 10,
+        title: 'Docker 容器化部署指南',
+        description: 'Docker 容器技术、镜像构建、容器编排等 DevOps 实践',
+        category: 'tools',
+        link: 'https://www.docker.com'
+      },
+      {
+        id: 11,
+        title: 'Webpack 5 配置详解',
+        description: 'Webpack 5 模块打包、代码分割、优化配置等前端工程化内容',
+        category: 'frontend',
+        link: 'https://www.bilibili.com/video/BV14T4y1z7sw/?spm_id_from=333.337.search-card.all.click'
+      },
+      {
+        id: 12,
+        title: 'Redis 数据库实战',
+        description: 'Redis 数据结构、持久化、集群、缓存策略等高性能缓存实践',
+        category: 'database',
+        link: 'https://www.bilibili.com/video/BV1cr4y1671t/'
+      },
+      {
+        id: 13,
+        title: 'PyTorch 神经网络编程',
+        description: '使用 PyTorch 进行神经网络编程，从基础到高级应用',
+        category: 'ai',
+        link: 'https://www.bilibili.com/video/BV1c5yrBcEEX/?spm_id_from=333.337.search-card.all.click'
+      },
+      {
+        id: 14,
+        title: 'Postman API 测试工具使用',
+        description: 'Postman 工具的使用方法，包含 API 测试、Mock 服务、自动化测试',
+        category: 'tools',
+        link: 'https://www.postman.com'
+      },
+
+      {
+        id: 15,
+        title: 'CSS Grid 布局完全指南',
+        description: '现代 CSS Grid 布局系统，包含网格创建、对齐、响应式设计',
+        category: 'frontend',
+        link: 'https://www.cnblogs.com/abc-x/p/10258695.html'
+      },
+
+      {
+        id: 16,
+        title: '自然语言处理入门',
+        description: 'NLP 基础概念、文本预处理、词向量、文本分类等',
+        category: 'ai',
+        link: 'https://www.bilibili.com/video/BV1GByoBfE73/?spm_id_from=333.337.search-card.all.click'
+      },
+      {
+        id: 17,
+        title: 'VS Code 开发效率提升技巧',
+        description: 'VS Code 快捷键、插件推荐、调试技巧等提升开发效率的方法',
+        category: 'tools',
+        link: 'https://code.visualstudio.com'
+      }
+    ]
+
+    // 过滤分类
+    let filtered = category === 'all'
+      ? allResources
+      : allResources.filter(r => r.category === category)
+
+    // 搜索关键词
+    if (keyword) {
+      filtered = filtered.filter(r =>
+        r.title.toLowerCase().includes(keyword) ||
+        r.description.toLowerCase().includes(keyword)
+      )
+    }
+
+    // 排序（按 id 倒序）
+    const sorted = filtered.sort((a, b) => b.id - a.id)
+
+    // 分页
+    const start = (page - 1) * limit
+    const end = start + limit
+    const paginatedData = sorted.slice(start, end)
+
+    return HttpResponse.json({
+      code: 0,
+      message: "ok",
+      data: {
+        list: paginatedData,
+        total: sorted.length,
+        page: page,
+        limit: limit
+      }
+    })
+  }),
+// 8. 公告通知接口
+ http.get('/api/announcements', ({ request }) => {
+    const url = new URL(request.url)
+    const page = Number(url.searchParams.get('page') || 1)
+    const limit = Number(url.searchParams.get('limit') || 10)
+    const category = url.searchParams.get('category') || 'all'
+
+    const allAnnouncements = [
+      {
+        id: 1,
+        title: "2026春季成员招新说明",
+        category: "recruit",
+        summary: "面向两江校区同学，欢迎关注大数据智能工作室。",
+        publishDate: "2026-02-20",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news1.jpg",
+        order: 1
+      },
+      {
+        id: 2,
+        title: "2月组会：大模型应用与官网开发实践分享",
+        category: "activity",
+        summary: "分享近期大模型应用与官网开发的实践体会。",
+        publishDate: "2026-02-15",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news2.jpg",
+        order: 2
+      },
+      {
+        id: 3,
+        title: "实验室官网测试版上线说明",
+        category: "notice",
+        summary: "官网处于测试阶段，部分页面与功能仍在建设与优化。",
+        publishDate: "2026-02-25",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news3.jpg",
+        order: 3
+      },
+      {
+        id: 4,
+        title: "创新竞赛与组队板块上线公告",
+        category: "contest",
+        summary: "集中展示赛事信息，支持发布和查询组队。",
+        publishDate: "2026-03-01",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news4.jpg",
+        order: 4
+      },
+      {
+        id: 5,
+        title: "企业合作数据标注项目招募成员",
+        category: "project_recruit",
+        summary: "企业数据标注项目报名中，提供实践证明与补贴。",
+        publishDate: "2026-03-05",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news5.jpg",
+        order: 5
+      },
+      {
+        id: 6,
+        title: "工作室技术分享会：Vue 3 实战经验",
+        category: "activity",
+        summary: "邀请资深开发者分享 Vue 3 在实际项目中的应用经验和最佳实践。",
+        publishDate: "2026-03-10",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news2.jpg",
+        order: 6
+      },
+      {
+        id: 7,
+        title: "2026年度创新创业大赛报名通知",
+        category: "contest",
+        summary: "工作室组织参加2026年度创新创业大赛，欢迎有想法有技术的同学报名。",
+        publishDate: "2026-03-12",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news4.jpg",
+        order: 7
+      },
+      {
+        id: 8,
+        title: "春季学期新成员欢迎会",
+        category: "recruit",
+        summary: "欢迎新加入工作室的成员，介绍工作室文化和未来发展方向。",
+        publishDate: "2026-03-15",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news1.jpg",
+        order: 8
+      },
+      {
+        id: 9,
+        title: "大数据技术前沿讲座通知",
+        category: "activity",
+        summary: "邀请行业专家进行大数据技术前沿讲座，探讨最新技术趋势。",
+        publishDate: "2026-03-18",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news2.jpg",
+        order: 9
+      },
+      {
+        id: 10,
+        title: "AI模型训练项目招募",
+        category: "project_recruit",
+        summary: "大语言模型训练项目需要更多成员参与，欢迎对AI感兴趣的同学加入。",
+        publishDate: "2026-03-20",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news5.jpg",
+        order: 10
+      },
+      {
+        id: 11,
+        title: "工作室月度总结会议",
+        category: "activity",
+        summary: "回顾本月工作成果，规划下月发展计划，加强团队协作。",
+        publishDate: "2026-03-22",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news2.jpg",
+        order: 11
+      },
+      {
+        id: 12,
+        title: "开源项目贡献者招募",
+        category: "project_recruit",
+        summary: "工作室开源项目需要更多贡献者，共同推动项目发展。",
+        publishDate: "2026-03-25",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news5.jpg",
+        order: 12
+      },
+      {
+        id: 13,
+        title: "技术博客写作活动",
+        category: "activity",
+        summary: "鼓励成员撰写技术博客，分享学习心得和项目经验。",
+        publishDate: "2026-03-28",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news2.jpg",
+        order: 13
+      },
+      {
+        id: 14,
+        title: "算法竞赛集训通知",
+        category: "contest",
+        summary: "为参加算法竞赛的同学组织集训，提升算法能力。",
+        publishDate: "2026-04-01",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news4.jpg",
+        order: 14
+      },
+      {
+        id: 15,
+        title: "工作室年度发展规划",
+        category: "notice",
+        summary: "公布工作室年度发展规划和目标，明确发展方向。",
+        publishDate: "2026-04-05",
+        link: "/info/news",
+        coverThumbUrl: "/static/news/news3.jpg",
+        order: 15
+      }
+    ]
+
+    // 过滤分类
+    let filtered = category === 'all' 
+      ? allAnnouncements 
+      : allAnnouncements.filter(a => a.category === category)
+
+    // 排序（按 order 倒序，即最新的在前）
+    const sorted = filtered.sort((a, b) => (b.order || 0) - (a.order || 0))
+
+    // 分页
+    const start = (page - 1) * limit
+    const end = start + limit
+    const paginatedData = sorted.slice(start, end)
+
+    return HttpResponse.json({
+      code: 0,
+      message: "ok",
+      data: {
+        list: paginatedData,
+        total: sorted.length,
+        page: page,
+        limit: limit
+      }
+    })
+  }),
+  
 ];

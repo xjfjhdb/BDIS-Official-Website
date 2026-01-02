@@ -30,8 +30,8 @@ const bannerList = ref([])
 // 页面挂载后请求接口
 onMounted(async () => {
   try {
-    const res = await axios.get('/api/home/banners')
-    console.log('banners 接口返回原始数据：', res.status, res.data)
+    const res = await axios.get('/api/banner')
+    console.log('banner 接口返回原始数据：', res.status, res.data)
     bannerList.value = res.data?.data || []
     console.log('bannerList 赋值后的内容：', bannerList.value)
   } catch (err) {
